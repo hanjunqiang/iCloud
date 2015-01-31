@@ -24,11 +24,6 @@
                                 <action selector="documentPickerPressed:" destination="BYZ-38-t0r" id="Lob-XX-azz"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="7Tj-iE-Jn6">
-                            <connections>
-                                <action selector="actionPressed:" destination="BYZ-38-t0r" id="9yg-bW-PGB"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                 </viewController>
             </objects>
@@ -37,6 +32,7 @@
         <!--Navigation Controller-->
         <scene sceneID="rtN-LQ-HZv">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Q3-G9-bzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v9I-fC-Faw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IK4-6P-QAQ">
@@ -48,7 +44,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Xt7-p3-2Oi"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Q3-G9-bzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="445" y="1087"/>
         </scene>

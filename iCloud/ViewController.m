@@ -22,9 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    if (!self.documentURL) {
-//        [self presentDocumentPicker];
-//    }
+    if (!self.documentURL) {
+        [self presentDocumentPicker];
+    }
 }
 
 
@@ -32,13 +32,6 @@
 
 - (IBAction)documentPickerPressed:(UIBarButtonItem *)sender {
     [self presentDocumentPicker];
-}
-
-- (IBAction)actionPressed:(UIBarButtonItem *)sender {
-    UIDocumentInteractionController *documentInteractionController = [[UIDocumentInteractionController alloc] init];
-    documentInteractionController.URL = self.documentURL;
-    documentInteractionController.delegate = self;
-    [documentInteractionController presentOpenInMenuFromBarButtonItem:sender animated:YES];
 }
 
 
@@ -61,7 +54,7 @@
     previewController.delegate = self;
     previewController.dataSource = self;
     
-    [self presentViewController:previewController animated:YES completion:nil];
+    [self.navigationController pushViewController:previewController animated:YES];
 }
 
 
