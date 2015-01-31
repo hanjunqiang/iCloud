@@ -11,21 +11,11 @@
 @interface ViewController () <UIDocumentPickerDelegate, UIDocumentInteractionControllerDelegate, QLPreviewControllerDelegate, QLPreviewControllerDataSource>
 
 @property (nonatomic, strong) NSURL *documentURL;
-@property (nonatomic, strong) NSArray *documentTypes;
 
 @end
 
 
 @implementation ViewController
-
-- (NSArray *)documentTypes {
-    if (!_documentTypes) {
-        _documentTypes = @[@"kUTTypeText", @"kUTTypeSourceCode", @"kUTTypeImage", @"kUTTypeAudioVisual​Content", @"kUTTypePDF"];
-    }
-    
-    return _documentTypes;
-}
-
 
 #pragma mark - UIViewController
 
@@ -48,7 +38,9 @@
 #pragma mark - Private
 
 - (void)presentDocumentPicker {
-    UIDocumentPickerViewController *documentPickerViewController = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:self.documentTypes
+    NSArray *documentTypes = @[@"public.text", @"public.source-code ", @"public.image", @"public.audiovisual-​content​", @"com.adobe.pdf", @"com.apple.keynote.key", @"com.microsoft.word.doc", @"com.microsoft.excel.xls", @"com.microsoft.powerpoint.​ppt"];
+    
+    UIDocumentPickerViewController *documentPickerViewController = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:documentTypes
                                                                                                                           inMode:UIDocumentPickerModeOpen];
     documentPickerViewController.delegate = self;
     [self presentViewController:documentPickerViewController animated:YES completion:nil];
