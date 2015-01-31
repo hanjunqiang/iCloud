@@ -8,9 +8,9 @@
 
 #import "ViewController.h"
 
-@interface ViewController () <UIDocumentPickerDelegate>
+@interface ViewController () <UIDocumentPickerDelegate, UIDocumentInteractionControllerDelegate, QLPreviewControllerDelegate, QLPreviewControllerDataSource>
 
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) NSURL *documentURL;
 
 @end
 
@@ -21,13 +21,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self presentUIDocumentPicker];
+    
+    if (!self.documentURL) {
+        [self presentDocumentPicker];
+    }
+}
+
+
+#pragma mark - Actions
+
+- (IBAction)documentPickerPressed:(UIBarButtonItem *)sender {
+    [self presentDocumentPicker];
 }
 
 
 #pragma mark - Private
 
-- (void)presentUIDocumentPicker {
+- (void)presentDocumentPicker {
     UIDocumentPickerViewController *documentPickerViewController = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:@[@"com.adobe.pdf"]
                                                                                                                           inMode:UIDocumentPickerModeOpen];
     documentPickerViewController.delegate = self;
@@ -38,7 +48,31 @@
 #pragma mark - UIDocumentPickerDelegate
 
 - (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentAtURL:(NSURL *)url {
-    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    self.documentURL = url;
+    
+    QLPreviewController *previewController = [[QLPreviewController alloc] init];
+    previewController.delegate = self;
+    previewController.dataSource = self;
+    
+    [self.navigationController pushViewController:previewController animated:YES];
+}
+
+
+#pragma mark - UIDocumentInteractionControllerDelegate
+
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
+    return self;
+}
+
+
+#pragma mark - QLPreviewControllerDataSource
+
+- (id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
+    return self.documentURL;
+}
+
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller {
+    return 1;
 }
 
 
