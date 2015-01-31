@@ -38,7 +38,7 @@
 #pragma mark - Private
 
 - (void)presentDocumentPicker {
-    NSArray *documentTypes = @[@"public.text", @"public.source-code ", @"public.image", @"public.audiovisual-​content​", @"com.adobe.pdf", @"com.apple.keynote.key", @"com.microsoft.word.doc", @"com.microsoft.excel.xls", @"com.microsoft.powerpoint.​ppt"];
+    NSArray *documentTypes = @[@"public.content", @"public.text", @"public.source-code ", @"public.image", @"public.audiovisual-content", @"com.adobe.pdf", @"com.apple.keynote.key", @"com.microsoft.word.doc", @"com.microsoft.excel.xls", @"com.microsoft.powerpoint.ppt"];
     
     UIDocumentPickerViewController *documentPickerViewController = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:documentTypes
                                                                                                                           inMode:UIDocumentPickerModeOpen];
