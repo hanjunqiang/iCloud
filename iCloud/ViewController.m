@@ -21,10 +21,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    if (!self.documentURL) {
-        [self presentDocumentPicker];
-    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self presentDocumentPicker];
 }
 
 
